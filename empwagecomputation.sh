@@ -36,6 +36,7 @@ while [[ $total_work_hrs -lt $maxhrs_month && $totalworking_days -lt $num_workin
 do
 	 ((totalworking_days++))
 	echo "Day: $totalworking_days"
+	echo "Workinghrs: $total_work_hrs"
 	empcheck=$(($RANDOM%3))
 	getworkhrs $empcheck
 	total_work_hrs=$(($total_work_hrs+$work_hrs))
