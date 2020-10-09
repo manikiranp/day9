@@ -35,8 +35,8 @@ function getworkhrs() {
 while [[ $total_work_hrs -lt $maxhrs_month && $totalworking_days -lt $num_working_days ]]
 do
 	 ((totalworking_days++))
-	echo "---Day: $totalworking_days"
-	echo "Workinghrs: $total_work_hrs"
+	days[$totalworking_days]=$(($totalworking_days))
+	echo "Day---${days[$totalworking_days]}"
 	empcheck=$(($RANDOM%3))
 	getworkhrs $empcheck
 	total_work_hrs=$(($total_work_hrs+$work_hrs))
@@ -45,5 +45,4 @@ do
 done
 echo "Total work hours: $total_work_hrs"
 echo "Employee monthly salary: $totalsalary"
-
 
