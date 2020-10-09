@@ -5,7 +5,9 @@ parttime=1
 fulltime=2
 wage_per_hr=20
 num_working_days=20
+maxhrs_month=100
 total_work_hrs=0
+totalworking_days=0
 total_salary=0
 
 function wage() {
@@ -20,7 +22,7 @@ function getworkhrs() {
                         ;;
                 $fulltime)
 			work_hrs=8
-                        echo "Employee is present"
+                        echo "Employee is present full-time"
         		echo "Employee daily wage: $(wage $work_hrs)"
                         ;;
                 *)
@@ -30,14 +32,15 @@ function getworkhrs() {
                         ;;
         esac
 }
-for (( day=1; day<=$num_working_days; day++ ))
+while [[ $total_work_hrs -lt $maxhrs_month && $totalworking_days -lt $num_working_days ]]
 do
-	echo "Day: $day"
+	 ((totalworking_days++))
+	echo "Day: $totalworking_days"
 	empcheck=$(($RANDOM%3))
 	getworkhrs $empcheck
 	total_work_hrs=$(($total_work_hrs+$work_hrs))
-	totalsalary=$(($totalsalary+$(wage $work_hrs)))
+	totalsalary=$(($totalsalary+$(wage $work_hrs)))	
 done
-
+echo "Total work hours: $total_work_hrs"
 echo "Employee monthly salary: $totalsalary"
 
